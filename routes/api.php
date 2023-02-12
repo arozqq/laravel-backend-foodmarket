@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\API\FoodController;
+use App\Http\Controllers\API\TransactionController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,9 +21,13 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::get('user', [UserController::class, 'fetch']); // data profile user
     Route::post('user', [UserController::class, 'updateProfile']); // update profile user
     Route::post('user/photo', [UserController::class, 'updatePhoto']); // update photo profile user
-    Route::post('logout', [UserController::class, 'logout']); // Logout
+    Route::post('logout', [UserController::class, 'logout']); 
+
+    Route::get('transaction', [TransactionController::class, 'all']);
     
 });
 
 Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
+
+Route::get('food', [FoodController::class, 'all']);
